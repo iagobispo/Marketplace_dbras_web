@@ -1,0 +1,14 @@
+.dvcontainerGeral{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    
+}
+
+input{
+    display: flex;
+    margin-top: 10px;
+    width: 300px;
+}
