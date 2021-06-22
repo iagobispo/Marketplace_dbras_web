@@ -1,9 +1,6 @@
 import React, {useEffect} from 'react';
-
 import {useSelector, useDispatch} from 'react-redux'
-
-import List from '../../component/lista'; // importando componente responsavel da renderização dos produtos
-
+import List from '../../component/lista'; 
 import { getAllProdutos } from '../../store/fetchAction';
 
 import  {addItem} from '../../store/ducks/cart';//importando variavel // const addItem = createAction('ADD_ITEM')
@@ -17,12 +14,7 @@ import imgCor from '../../assets/coracao.png';
 import imgCar from '../../assets/car.png';
 import imglarga from '../../assets/img1400.png';
 
-
 import { Link } from 'react-router-dom';
-
-
-
-
 
 export default function Home(){
     
@@ -40,8 +32,6 @@ export default function Home(){
     }, [dispatch]);
 
     
-
-
     function addItemCart(produto){  // função para adicionar um produto ao carrinho 
        if (cart.some((prod) => prod.id === produto.id)) {  //condição para verificar se o produto que esta sendo adicionado ja esta no carrinho
            alert('O PRODUTO JS FOI ADICIONADO AO CARRINHO')  // aviso de que o produto ja esta no carrinho
@@ -62,8 +52,7 @@ export default function Home(){
     
 return (
     
-         <div className='containerGeral'>
-             
+         <div className='containerGeral'>           
                  <div className='bordaSimples'>
                  </div>
 
@@ -87,33 +76,21 @@ return (
                      </div>
 
                      <Link to='/add'>ADICIONAR PRODUTOS</Link>
-
                  </div>
-
-
                  <div className='divGenero'>
                      <button className='btnGenero'>MASCULINO</button>
                      <button className='btnGenero'>FEMININO</button>
                      <button className='btnGenero'>INFANTIL</button>
                      
                  </div>
-                
-        
         <div className='dvList'>
         <img src={imglarga} className='imgLarga'  alt=""></img>
-            
-
             <div className='dvList2'>
 
                {produtos.map((pro, index)=> <List key={index} pro={pro} addItemCart={addItemCart} addItemFavorito={addItemFavorito}/>)} 
-
-            </div>
-
-
+           </div>
+         </div>      
         </div>
-       
-             
-         </div>
          
 )}
 
