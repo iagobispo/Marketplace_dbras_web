@@ -1,182 +1,80 @@
-.containerGeral{
-    
-    display: flex ;
+.div-containner{
     align-items: center;
-    flex: 1;
-    height: auto;
+    display: flex;
     flex-direction: column;
-    
 
 }
 
-.bordaSimples{
-    width: 100%;
-    height: 25px;
-    
-    background-color: black;
-}
-.divGenero{
-    width: 100%;
-    height: 30px;
-    background-color: black;
+.containner-show{
+    width: 83%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    
-
-}
-
-.btnGenero{
-    color: #fff;
-    background-color: black;
-    border: none;
-}
-
-.dvBusca{
-    display: flex;
-   justify-content: space-around;
-   align-items: center;
-   flex-direction: row;
-
-    width: 80%;
-    height: 50px;
-
-    
-    
-    
-    
-    
-    
-}
-
-input{
-   
-    height: 19px;
-    border-radius: 2px;
-    border: solid 1px  ; 
-    text-align: center;
-    
-    margin-bottom: 9px;
-    
-    
-    
-}
-
-.btInput{
-    background-color:  black;
-    width: 30px;
-    height: 23px;
-    border: solid 1px;
-
-}
-
-.dvInput{
-   
-    display: flex;
-
-    align-items: center;
-    
-    
-}
-
-.imgP{
-    width: 10px;
-    height:10px;
-}
-
-.imgLogo{
-    width: 35px;
-}
-
-.imgP2{
-    width: 15px;
-    height:15px;
-    
-}
-
-.btIcone{
-    background-color: transparent;
-    border: none;
-}
-
-.btEntrar{
-    background-color:black;
-    border: none;
-    color: #fff;
-    border-radius: 8px;
-    height: 25px;
-}
-
-.imgLarga{
-    width: 1000px;
-    height: 100px;
-   
-    
-}
-
-.dvList2{
-    width: auto;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
- 
-    padding: 20px;
-
-    padding-left: 40PX;
-
-    background-color: black;
-
-}
-
-.dvProdutos{
-    width: 200px;
-    height: 300px;
-    flex-direction: column;
-    display: flex;
-    background-color: #fff;
-    align-items: center;
     justify-content: space-between;
-    padding-bottom: 20px;
+    box-direction: row;
+    
+    margin: 0%;
+    padding: 0%;
+    min-height: 100vh;
+    height: auto; 
+    background-color: #5bc0de20; 
+
+}
+
+.div-imput{
+     margin-top: 100px;
+     margin-right: 10%;
+     display: flex;
+     flex-direction: row;
+     height: 30px;
+     width: 40%;
+}
+
+.btn-search{
+    border: 0px;
+    background-color: #5bc0de;
+    color: white;
+    border-radius: 0px 0.2rem 0.2rem 0px;
+    
+    
+}
+.input-search{
+    border: 0px;
+    text-align: center;
+    height: 30px;
+    margin: 0;
+    border-radius: 0.2rem 0px 0px 0.2rem;
+    background-color: #5bc0de50;
+    padding: 0px;
+    width: 100%;
+    
     
 }
 
-.imgProduto{
-    width: 180px;
-    
+.containner-render{
+    margin-top: 100px;
+    width: 80%;
+    margin-left: 10%;
 }
 
-@media (max-width: 960px) {
-
-    .dvList2{
-        
-        grid-template-columns: 1fr 1fr 1fr ;
-         
-        margin-top:  20px;
-    }
-
-    .imgLarga{
-       display: none;
-        
-    }
+.containner-add{
+    display: flex;
+    flex: 1;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-top: 200px;
 }
 
-@media (max-width: 630px) {
-    
-    .dvList2{
-        
-        grid-template-columns: 1fr 1fr ;
-    
-    }
+.containner-add h1{
+    font-size: 30px;
+    color: #323232;
+}
 
-    .dvInput{
-   
-       display: none;
-        
-    }
-
-    
-
+.btn-add{
+    height: 30px;
+    background-color: #5bc0de;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
     
 }

@@ -1,96 +1,78 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux'
-import List from '../../component/lista'; 
-import { getAllProdutos } from '../../store/fetchAction';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 
-import  {addItem} from '../../store/ducks/cart';//importando variavel // const addItem = createAction('ADD_ITEM')
-import  {addFavorito} from '../../store/ducks/favorite';//importando variavel // const addFavorito = createAction('ADD_FAVORITO');
+import ListEmployee from '../../component/listEmployee';
+import Header from '../../component/Header';
+import { useHistory } from 'react-router-dom'
+
+import { getAllEmployees, getSearchEmployees } from '../../store/fetchAction';
 
 import './styles.css';
 
-import Fogo from '../../assets/fogo.png';
-import pesquisa from '../../assets/search.png';
-import imgCor from '../../assets/coracao.png';
-import imgCar from '../../assets/car.png';
-import imglarga from '../../assets/img1400.png';
+export default function Home() {
 
-import { Link } from 'react-router-dom';
-
-export default function Home(){
-    
-    const length = useSelector(state => state.cart.length);
-    const lengthf = useSelector(state => state.favorite.length);
-
-   const cart = useSelector(state => state.cart)
-   const favorite = useSelector(state => state.favorite)
-
-    const produtos = useSelector(state => state.produtos);
+    const employee = useSelector(state => state.employee);
     const dispatch = useDispatch()
 
+    const history = useHistory();
+
+    const [form, setForm] = useState('')
+    function formChange(e) {
+        setForm({ search: e.target.value });
+        console.log(form)
+    }
+
+
+    function SearchSend(e) {
+        e.preventDefault();
+        dispatch(getSearchEmployees(form.search))
+        setForm({})
+
+    }
+
+    function onBlurCheck() {
+        if (form.search == "") {
+            dispatch(getAllEmployees())
+        }
+    }
+
     useEffect(() => {
-        dispatch(getAllProdutos())
-    }, [dispatch]);
+        dispatch(getAllEmployees())
+    }, [dispatch], []);
 
-    
-    function addItemCart(produto){  // função para adicionar um produto ao carrinho 
-       if (cart.some((prod) => prod.id === produto.id)) {  //condição para verificar se o produto que esta sendo adicionado ja esta no carrinho
-           alert('O PRODUTO JS FOI ADICIONADO AO CARRINHO')  // aviso de que o produto ja esta no carrinho
-       }else{
-            dispatch(addItem(produto));  //caso a condição seja else, esse comando ira adicionar o produto no carrinho
-       }
-    }
 
-    function addItemFavorito(produto){
-       if (favorite.some((prod) => prod.id === produto.id)){
-           alert('O PRODUTO JA ESTA AOS FAVORITOS')
-       }else{
-            dispatch(addFavorito(produto));
-       }
-        
-    }
-    
-    
-return (
-    
-         <div className='containerGeral'>           
-                 <div className='bordaSimples'>
-                 </div>
+    return (
 
-                 <div className='dvBusca'>
-                     <img src={Fogo} className='imgLogo'  alt=""/>
-                     <div className='dvInput'>
-                     <input placeholder='Pesquisar' ></input>
-                     <button className='btInput'><img src={pesquisa} className='imgP'  alt=""/></button>
-                     </div>
-                   
-                     <button className='btEntrar' onClick={() => {console.log(produtos)}}>ENTRAR</button>
+        <div className='div-containner'>
+            <Header title='Cadastrar funcionário' page='formEemployee' />
 
-                    <div>
-                         <Link to='/favorite'> <img src={imgCor} className='imgP2'  alt=""/></Link>
-                         <span>{lengthf}</span>
+
+            {employee.length > 0 ?
+                <div className='containner-show'>
+                    <div className="containner-render">
+                        {employee.map((data, index) => (
+                            <ListEmployee key={index} data={data} />
+                        ))}
                     </div>
-                     
-                     <div>
-                     <Link to='/carrinho'> <img src={imgCar} className='imgP2' alt=""/></Link>
-                         <span className="">{length}</span>
-                     </div>
+                                      
+                    <form onSubmit={SearchSend} className="div-imput">
+                        <input onBlur={onBlurCheck} onChange={formChange} className='input-search' placeholder='Buscar funcionários' required type='text' name='search' value={form.search} />
+                        <button type='submit' className='btn-search'>Buscar</button>
+                    </form>
+                </div>
+                :
+                <div onClick={() => history.push('/formEemployee')} className='containner-add'>
+                    <h1>Não há funcionários cadastrado.</h1>
+                    <button className='btn-add'>Cadastrar</button>
+                </div>
+            }
 
-                     <Link to='/add'>ADICIONAR PRODUTOS</Link>
-                 </div>
-                 <div className='divGenero'>
-                     <button className='btnGenero'>MASCULINO</button>
-                     <button className='btnGenero'>FEMININO</button>
-                     <button className='btnGenero'>INFANTIL</button>
-                     
-                 </div>
-        <div className='dvList'>
-        <img src={imglarga} className='imgLarga'  alt=""></img>
-            <div className='dvList2'>
 
-               {produtos.map((pro, index)=> <List key={index} pro={pro} addItemCart={addItemCart} addItemFavorito={addItemFavorito}/>)} 
-           </div>
-         </div>      
+
+
+
         </div>
-         
-)}
 
+
+    )
+}
